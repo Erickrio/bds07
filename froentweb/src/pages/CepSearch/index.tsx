@@ -3,17 +3,26 @@ import './styles.css';
 import ResultCard from 'components/ResultCard';
 
 const CepSearch = () => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('mudou para ' + event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();//evita que o formulario seja enviado da forma padrão
+    console.log('Clicou no botão');
+  };
+
   return (
     <div className="cep-search-container">
       <h1 className="text-primary">Busca CEP</h1>
       <div className="container search-container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-container">
             <input
               type="text"
               className="search-input"
               placeholder="CEP (somente números)"
-              onChange={() => {}}
+              onChange={handleChange}
             />
             <button type="submit" className="btn btn-primary search-button">
               Buscar
@@ -23,7 +32,6 @@ const CepSearch = () => {
 
         <ResultCard title="Logradouro" description="Lalala" />
         <ResultCard title="Número" description="234" />
-
       </div>
     </div>
   );
